@@ -10,7 +10,8 @@
 ## Installation
 
 ```shell
-pip install git+https://github.com/uktrade/directory-validators.git
+pip install -e git+https://github.com/uktrade/directory-validators.git@<branch>#egg=directory_validators
+
 ```
 
 ## Usage
