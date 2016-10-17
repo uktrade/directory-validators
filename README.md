@@ -28,3 +28,7 @@ enrolment.validate_email('test@example.com')
     $ git clone https://github.com/uktrade/directory-validators
     $ cd directory-validators
     $ make
+
+
+## Testing
+	$ py.test .
