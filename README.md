@@ -10,7 +10,8 @@
 ## Installation
 
 ```shell
-pip install git+https://github.com/uktrade/directory-validators.git
+pip install -e git+https://github.com/uktrade/directory-validators.git@<branch>#egg=directory_validators
+
 ```
 
 ## Usage
@@ -28,3 +29,7 @@ enrolment.validate_email('test@example.com')
     $ git clone https://github.com/uktrade/directory-validators
     $ cd directory-validators
     $ make
+
+
+## Testing
+	$ py.test .
