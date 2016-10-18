@@ -1,10 +1,11 @@
+from django.conf import settings
 from django.core.validators import RegexValidator, ValidationError
 
 from directory_validators.constants.disposable_email_domains import (
     disposable_domains
 )
 from directory_validators.constants.free_email_domains import free_domains
-from directory_validators import constants, helpers
+from directory_validators import helpers
 
 
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
@@ -26,7 +27,7 @@ def logo_filesize(value):
 
     """
 
-    if value.size > constants.MAX_LOGO_SIZE_BYTES:
+    if value.size > settings.VALIDATOR_MAX_LOGO_SIZE_BYTES:
         raise ValidationError(MESSAGE_FILE_TOO_BIG)
 
 
