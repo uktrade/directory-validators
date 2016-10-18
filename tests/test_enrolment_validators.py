@@ -3,8 +3,9 @@ from unittest import mock
 import pytest
 
 from django import forms
+from django.conf import settings
 
-from directory_validators import constants, enrolment
+from directory_validators import enrolment
 
 
 def create_mock_file_of_size(size):
@@ -27,13 +28,15 @@ def test_company_number_nine_chars_rejected():
 
 
 def test_logo_filesize_rejects_too_big():
-    mock_file = create_mock_file_of_size(constants.MAX_LOGO_SIZE_BYTES + 1)
+    size = settings.VALIDATOR_MAX_LOGO_SIZE_BYTES + 1
+    mock_file = create_mock_file_of_size(size)
     with pytest.raises(forms.ValidationError):
         enrolment.logo_filesize(mock_file)
 
 
 def test_logo_filesize_accepts_not_too_big():
-    mock_file = create_mock_file_of_size(constants.MAX_LOGO_SIZE_BYTES)
+    size = settings.VALIDATOR_MAX_LOGO_SIZE_BYTES
+    mock_file = create_mock_file_of_size(size)
     assert enrolment.logo_filesize(mock_file) is None
 
 
