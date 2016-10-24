@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.validators import RegexValidator, ValidationError
 
+from directory_validators import choices
 from directory_validators.constants.disposable_email_domains import (
     disposable_domains
 )
@@ -57,3 +58,8 @@ def email_domain_disposable(value):
     domain = helpers.get_domain_from_email_address(value)
     if domain.lower() in disposable_domains:
         raise ValidationError(MESSAGE_USE_COMPANY_EMAIL)
+
+
+def export_status_intention(value):
+    if value == choices.NO_EXPORT_INTENTION:
+        raise ValidationError('incorrect service')

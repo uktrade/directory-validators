@@ -5,7 +5,7 @@ import pytest
 from django import forms
 from django.conf import settings
 
-from directory_validators import enrolment
+from directory_validators import enrolment, choices
 
 
 def create_mock_file_of_size(size):
@@ -56,3 +56,12 @@ def test_email_domain_disposable_rejects_disposable_email():
 
 def test_email_domain_disposable_accepts_corporate_email():
     assert enrolment.email_domain_disposable('contact@google.com') is None
+
+
+def test_export_status_rejects_no_intention():
+    with pytest.raises(forms.ValidationError):
+        enrolment.export_status(choices.NO_EXPORT_INTENTION)
+
+
+def test_export_status_accepts_intention():
+    assert enrolment.export_status(choices.EXPORT_STATUSES[1][0]) is None
