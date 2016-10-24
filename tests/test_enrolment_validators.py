@@ -60,8 +60,9 @@ def test_email_domain_disposable_accepts_corporate_email():
 
 def test_export_status_rejects_no_intention():
     with pytest.raises(forms.ValidationError):
-        enrolment.export_status(choices.NO_EXPORT_INTENTION)
+        enrolment.export_status_intention(choices.NO_EXPORT_INTENTION)
 
 
 def test_export_status_accepts_intention():
-    assert enrolment.export_status(choices.EXPORT_STATUSES[1][0]) is None
+    choice = choices.EXPORT_STATUSES[1][0]
+    assert enrolment.export_status_intention(choice) is None
