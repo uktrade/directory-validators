@@ -1,13 +1,6 @@
 # flake8: noqa
 NO_EXPORT_INTENTION = 'NO_INTENTION'
 
-AIMS = (
-    ('', ''),
-    ('ANSWER1', 'Answer 1'),
-    ('ANSWER2', 'Answer 2'),
-    ('OTHER', 'Other')
-)
-
 COMPANY_CLASSIFICATIONS = (
     ('AEROSPACE', 'Aerospace'),
     ('AGRICULTURE_HORTICULTURE_AND_FISHERIES', 'Agriculture, Horticulture and Fisheries'),
@@ -49,7 +42,7 @@ COMPANY_CLASSIFICATIONS = (
 )
 
 EMPLOYEES = (
-    ('', 'Please select'),
+    ('', 'Please select and option'),
     ('1-10', '1-10'),
     ('11-50', '11-50'),
     ('51-200', '51-200'),
@@ -60,10 +53,10 @@ EMPLOYEES = (
 )
 
 EXPORT_STATUSES = (
-    ('', ''),
+    ('', 'Please select and option'),
     ('YES', 'Yes, in the last year.'),
-    ('ONE_TWO_YEARS_AGO', 'Yes, 1-2 years ago.'),
-    ('OVER_TWO_YEARS_AGO', 'Yes, over 2 years ago.'),
-    ('NOT_YET', 'Not yet.'),
-    (NO_EXPORT_INTENTION, 'No, and we have no intention to.'),
+    ('ONE_TWO_YEARS_AGO', 'Yes, 1 to 2 years ago.'),
+    ('OVER_TWO_YEARS_AGO', 'Yes, but more than 2 years ago.'),
+    ('NOT_YET', 'No, but we are preparing to.'),
+    (NO_EXPORT_INTENTION, 'No, we are not planning to sell overseas.'),
 )
