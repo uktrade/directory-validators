@@ -9,7 +9,6 @@ AIMS = (
 )
 
 COMPANY_CLASSIFICATIONS = (
-    ('', ''),
     ('AEROSPACE', 'Aerospace'),
     ('AGRICULTURE_HORTICULTURE_AND_FISHERIES', 'Agriculture, Horticulture and Fisheries'),
     ('AIRPORTS', 'Airports'),
