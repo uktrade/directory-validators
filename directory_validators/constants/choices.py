@@ -42,7 +42,7 @@ COMPANY_CLASSIFICATIONS = (
 )
 
 EMPLOYEES = (
-    ('', 'Please select and option'),
+    ('', 'Please select an option'),
     ('1-10', '1-10'),
     ('11-50', '11-50'),
     ('51-200', '51-200'),
@@ -53,7 +53,7 @@ EMPLOYEES = (
 )
 
 EXPORT_STATUSES = (
-    ('', 'Please select and option'),
+    ('', 'Please select an option'),
     ('YES', 'Yes, in the last year.'),
     ('ONE_TWO_YEARS_AGO', 'Yes, 1 to 2 years ago.'),
     ('OVER_TWO_YEARS_AGO', 'Yes, but more than 2 years ago.'),
