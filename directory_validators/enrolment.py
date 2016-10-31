@@ -13,7 +13,11 @@ from directory_validators import helpers
 
 
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
-MESSAGE_USE_COMPANY_EMAIL = 'Plase use your company email address.'
+MESSAGE_USE_COMPANY_EMAIL = (
+    'Please use your business, company or corporate email address. We '
+    'validate you as a business owner or employee through your business, '
+    'company or corporate email address.'
+)
 
 company_number = RegexValidator(
     message="Company number must be 8 characters",
