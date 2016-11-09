@@ -1,5 +1,7 @@
 from django.core.validators import ValidationError
 
+from directory_validators import helpers
+
 
 SECTOR_LIMIT = 'Please choose no more than 10 sectors.'
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
@@ -27,5 +29,5 @@ def keywords_word_limit(keywords):
 
     """
 
-    if len(keywords.split()) > 10:
+    if len(helpers.tokenize_keywords(keywords)) > 10:
         raise ValidationError(KEYWORD_LIMIT)
