@@ -54,9 +54,9 @@ EMPLOYEES = (
 
 EXPORT_STATUSES = (
     ('', 'Please select an option'),
-    ('YES', 'Yes, in the last year.'),
-    ('ONE_TWO_YEARS_AGO', 'Yes, 1 to 2 years ago.'),
-    ('OVER_TWO_YEARS_AGO', 'Yes, but more than 2 years ago.'),
-    ('NOT_YET', 'No, but we are preparing to.'),
-    (NO_EXPORT_INTENTION, 'No, we are not planning to sell overseas.'),
+    ('YES', 'Yes, in the last year'),
+    ('ONE_TWO_YEARS_AGO', 'Yes, 1 to 2 years ago'),
+    ('OVER_TWO_YEARS_AGO', 'Yes, but more than 2 years ago'),
+    ('NOT_YET', 'No, but we are preparing to'),
+    (NO_EXPORT_INTENTION, 'No, we are not planning to sell overseas'),
 )
