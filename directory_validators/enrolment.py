@@ -1,3 +1,5 @@
+import phonenumbers
+
 from django.conf import settings
 from django.core.validators import RegexValidator, ValidationError
 
@@ -18,6 +20,7 @@ MESSAGE_USE_COMPANY_EMAIL = (
     'validate you as a business owner or employee through your business, '
     'company or corporate email address.'
 )
+MESSAGE_INVALID_PHONE_NUMBER = 'Please enter a valid UK phone number.'
 
 company_number = RegexValidator(
     message="Company number must be 8 characters",
@@ -68,5 +71,32 @@ def email_domain_disposable(value):
 
 
 def export_status_intention(value):
+    """
+    Confirms that user intends to export.
+    @param {str} value
+    @returns {None}
+    @raises AssertionError
+
+    """
+
     if value == choices.NO_EXPORT_INTENTION:
         raise ValidationError(NO_EXPORT_INTENTION_ERROR_LABEL)
+
+
+def domestic_mobile_phone_number(value):
+    """
+    Confirms that the phone number is a valid UK phone number.
+    @param {str} value
+    @returns {None}
+    @raises AssertionError
+
+    """
+
+    try:
+        parsed = phonenumbers.parse(value, 'GB')
+    except phonenumbers.phonenumberutil.NumberParseException:
+        pass
+    else:
+        if phonenumbers.is_valid_number(parsed):
+            return None
+    raise ValidationError(MESSAGE_INVALID_PHONE_NUMBER)
