@@ -1,5 +1,6 @@
 from unittest import mock
 
+from phonenumbers.phonenumberutil import NumberParseException
 import pytest
 
 from django import forms
@@ -68,3 +69,33 @@ def test_export_status_rejects_no_intention():
 def test_export_status_accepts_intention():
     choice = constants.choices.EXPORT_STATUSES[1][0]
     assert enrolment.export_status_intention(choice) is None
+
+
+@mock.patch('phonenumbers.parse')
+def test_domestic_mobile_phone_number_parse_error(mock_parse):
+    mock_parse.side_effect = NumberParseException(error_type=None, msg='')
+    expected = enrolment.MESSAGE_INVALID_PHONE_NUMBER
+    with pytest.raises(forms.ValidationError, messages=expected):
+        enrolment.domestic_mobile_phone_number('')
+
+
+@mock.patch('phonenumbers.is_valid_number', mock.Mock(return_value=False))
+def test_domestic_mobile_phone_number_invalid():
+    expected = enrolment.MESSAGE_INVALID_PHONE_NUMBER
+    with pytest.raises(forms.ValidationError, messages=expected):
+        enrolment.domestic_mobile_phone_number('07605437499')
+
+
+@mock.patch('phonenumbers.is_valid_number', mock.Mock(return_value=True))
+def test_mobile_phone_number_valid():
+    assert enrolment.domestic_mobile_phone_number('07507605384') is None
+
+
+@mock.patch('phonenumbers.is_valid_number')
+@mock.patch('phonenumbers.parse', return_value=mock.Mock())
+def test_domestic_mobile_phone_number_end_to_end_call(
+    mock_parse, mock_is_valid_number
+):
+    enrolment.domestic_mobile_phone_number('07507605483')
+    mock_parse.assert_called_once_with('07507605483', 'GB')
+    mock_is_valid_number.assert_called_once_with(mock_parse.return_value)
