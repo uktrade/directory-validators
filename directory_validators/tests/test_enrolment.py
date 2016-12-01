@@ -93,9 +93,17 @@ def test_mobile_phone_number_valid():
 
 @mock.patch('phonenumbers.is_valid_number')
 @mock.patch('phonenumbers.parse', return_value=mock.Mock())
+@mock.patch('phonenumbers.carrier._is_mobile', mock.Mock(return_value=True))
 def test_domestic_mobile_phone_number_end_to_end_call(
     mock_parse, mock_is_valid_number
 ):
     enrolment.domestic_mobile_phone_number('07507605483')
     mock_parse.assert_called_once_with('07507605483', 'GB')
     mock_is_valid_number.assert_called_once_with(mock_parse.return_value)
+
+
+def test_domestic_mobile_phone_number_rejects_non_mobile():
+    expected = enrolment.MESSAGE_INVALID_PHONE_NUMBER
+    for value in ['+442082919192', '02082919192']:
+        with pytest.raises(forms.ValidationError, message=expected):
+            enrolment.domestic_mobile_phone_number(value)
