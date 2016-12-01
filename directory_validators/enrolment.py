@@ -1,4 +1,6 @@
 import phonenumbers
+from phonenumbers import carrier
+from phonenumbers.phonenumberutil import number_type, NumberParseException
 
 from django.conf import settings
 from django.core.validators import RegexValidator, ValidationError
@@ -94,9 +96,10 @@ def domestic_mobile_phone_number(value):
 
     try:
         parsed = phonenumbers.parse(value, 'GB')
-    except phonenumbers.phonenumberutil.NumberParseException:
+    except NumberParseException:
         pass
     else:
-        if phonenumbers.is_valid_number(parsed):
+        is_mobile = carrier._is_mobile(number_type(parsed))
+        if is_mobile and phonenumbers.is_valid_number(parsed):
             return None
     raise ValidationError(MESSAGE_INVALID_PHONE_NUMBER)

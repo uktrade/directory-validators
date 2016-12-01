@@ -11,7 +11,7 @@ flake8:
 	flake8 . --exclude=migrations
 
 pytest:
-	pytest . --cov=. $(pytest_args)
+	pytest . --cov=. --capture=no $(pytest_args)
 
 test: flake8 pytest
 
