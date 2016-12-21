@@ -1,3 +1,5 @@
+from urllib import parse
+
 from django.conf import settings
 from django.core.validators import ValidationError
 
@@ -7,6 +9,9 @@ from directory_validators import helpers
 SECTOR_LIMIT = 'Please choose no more than 10 sectors.'
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
+MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
+MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
+MESSAGE_NOT_LINKEDIN = 'Please provide a link to LinkedIn.'
 
 
 def sector_choice_limit(choices):
@@ -71,3 +76,54 @@ def case_study_video_filesize(value):
 
     if value.size > settings.VALIDATOR_MAX_CASE_STUDY_VIDEO_SIZE_BYTES:
         raise ValidationError(MESSAGE_FILE_TOO_BIG)
+
+
+def case_study_social_link_facebook(value):
+    """
+    Confirms that the social media url is pointed at the correct domain.
+
+    Args:
+        value (string): The url to check.
+
+    Raises:
+        django.forms.ValidationError
+
+    """
+
+    parsed = parse.urlparse(value.lower())
+    if not parsed.netloc.endswith('facebook.com'):
+        raise ValidationError(MESSAGE_NOT_FACEBOOK)
+
+
+def case_study_social_link_twitter(value):
+    """
+    Confirms that the social media url is pointed at the correct domain.
+
+    Args:
+        value (string): The url to check.
+
+    Raises:
+        django.forms.ValidationError
+
+    """
+
+    parsed = parse.urlparse(value.lower())
+    if not parsed.netloc.endswith('twitter.com'):
+        raise ValidationError(MESSAGE_NOT_TWITTER)
+
+
+def case_study_social_link_linkedin(value):
+    """
+    Confirms that the social media url is pointed at the correct domain.
+
+    Args:
+        value (string): The url to check.
+
+    Raises:
+        django.forms.ValidationError
+
+    """
+
+    parsed = parse.urlparse(value.lower())
+    if not parsed.netloc.endswith('linkedin.com'):
+        raise ValidationError(MESSAGE_NOT_LINKEDIN)
