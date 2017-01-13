@@ -13,7 +13,6 @@ COMPANY_CLASSIFICATIONS = (
     ('COMMUNICATIONS', 'Communications'),
     ('CONSTRUCTION', 'Construction'),
     ('CREATIVE_AND_MEDIA', 'Creative and media'),
-    ('DEFENCE', 'Defence'),
     ('EDUCATION_AND_TRAINING', 'Education and training'),
     ('ELECTRONICS_AND_IT_HARDWARE', 'Electronics and IT hardware'),
     ('ENVIRONMENT', 'Environment'),
