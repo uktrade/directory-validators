@@ -12,6 +12,11 @@ MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
 MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
 MESSAGE_NOT_LINKEDIN = 'Please provide a link to LinkedIn.'
+MESSAGE_INVALID_IMAGE_FORMAT = (
+    'Invalid image format, allowed formats: {}'.format(', '.join(
+        settings.VALIDATOR_ALLOWED_IMAGE_FORMATS)
+    )
+)
 
 
 def sector_choice_limit(choices):
@@ -44,6 +49,22 @@ def keywords_word_limit(keywords):
 
     if len(helpers.tokenize_keywords(keywords)) > 10:
         raise ValidationError(KEYWORD_LIMIT)
+
+
+def image_format(value):
+    """
+    Confirms that the uploaded image is of supported format.
+
+    Args:
+        value (File): The file with an `image` property containing the image
+
+    Raises:
+        django.forms.ValidationError
+
+    """
+    allowed = settings.VALIDATOR_ALLOWED_IMAGE_FORMATS
+    if value.image.format.upper() not in allowed:
+        raise ValidationError(MESSAGE_INVALID_IMAGE_FORMAT)
 
 
 def case_study_image_filesize(value):

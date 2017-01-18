@@ -1,6 +1,10 @@
+from io import BytesIO
 from unittest import mock
 
 import pytest
+from PIL import (
+    Image, ImageDraw, PngImagePlugin, JpegImagePlugin, GifImagePlugin
+)
 
 from django import forms
 from django.conf import settings
@@ -8,8 +12,43 @@ from django.conf import settings
 from directory_validators import company
 
 
+def create_test_image(extension):
+    image = Image.new("RGB", (300, 50))
+    draw = ImageDraw.Draw(image)
+    draw.text((0, 0), "This text is drawn on image")
+    byte_io = BytesIO()
+    image.save(byte_io, extension)
+    byte_io.seek(0)
+    return byte_io
+
+
 def create_mock_file_of_size(size):
     return mock.Mock(size=size)
+
+
+@pytest.fixture(scope='session')
+def gif_image():
+    return GifImagePlugin.GifImageFile(create_test_image('gif'))
+
+
+@pytest.fixture(scope='session')
+def png_image():
+    return PngImagePlugin.PngImageFile(create_test_image('png'))
+
+
+@pytest.fixture(scope='session')
+def jpeg_image():
+    return JpegImagePlugin.JpegImageFile(create_test_image('jpeg'))
+
+
+def test_image_format_invalid_format(gif_image):
+    with pytest.raises(forms.ValidationError):
+        company.image_format(mock.Mock(image=gif_image))
+
+
+def test_image_format_valid_format(png_image, jpeg_image):
+    for image in (jpeg_image, png_image):
+        assert company.image_format(mock.Mock(image=image)) is None
 
 
 def test_case_study_image_filesize_rejects_too_big():
