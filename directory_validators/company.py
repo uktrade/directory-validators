@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.validators import ValidationError
 
 from directory_validators import helpers
-
+from directory_validators import constants
 
 SECTOR_LIMIT = 'Please choose no more than 10 sectors.'
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
@@ -13,8 +13,8 @@ MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
 MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
 MESSAGE_NOT_LINKEDIN = 'Please provide a link to LinkedIn.'
 MESSAGE_INVALID_IMAGE_FORMAT = (
-    'Invalid image format, allowed formats: {}'.format(', '.join(
-        settings.VALIDATOR_ALLOWED_IMAGE_FORMATS)
+    'Invalid image format, allowed formats: {}'.format(
+        ', '.join(constants.ALLOWED_IMAGE_FORMATS)
     )
 )
 
@@ -62,8 +62,8 @@ def image_format(value):
         django.forms.ValidationError
 
     """
-    allowed = settings.VALIDATOR_ALLOWED_IMAGE_FORMATS
-    if value.image.format.upper() not in allowed:
+
+    if value.image.format.upper() not in constants.ALLOWED_IMAGE_FORMATS:
         raise ValidationError(MESSAGE_INVALID_IMAGE_FORMAT)
 
 
