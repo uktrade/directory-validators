@@ -6,7 +6,7 @@ from django.core.validators import ValidationError
 from directory_validators import helpers
 from directory_validators import constants
 
-SECTOR_LIMIT = 'Please choose no more than 10 sectors.'
+SECTOR_LIMIT = 'Please choose no more than 1 sector.'
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
@@ -30,8 +30,7 @@ def sector_choice_limit(choices):
         django.forms.ValidationError
 
     """
-
-    if len(choices) > 10:
+    if len(choices) > 1:
         raise ValidationError(SECTOR_LIMIT)
 
 
