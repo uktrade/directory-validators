@@ -6,7 +6,6 @@ from django.core.validators import ValidationError
 from directory_validators import helpers
 from directory_validators import constants
 
-SECTOR_LIMIT = 'Please choose no more than 1 sector.'
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
@@ -17,21 +16,6 @@ MESSAGE_INVALID_IMAGE_FORMAT = (
         ', '.join(constants.ALLOWED_IMAGE_FORMATS)
     )
 )
-
-
-def sector_choice_limit(choices):
-    """
-    Confirms that the number of sectors selected is less than the allowed max.
-
-    Args:
-        choices (str[])
-
-    Raises:
-        django.forms.ValidationError
-
-    """
-    if len(choices) > 1:
-        raise ValidationError(SECTOR_LIMIT)
 
 
 def keywords_word_limit(keywords):
