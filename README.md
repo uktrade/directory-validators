@@ -5,6 +5,10 @@
 
 [![CircleCI](https://circleci.com/gh/uktrade/directory-validators/tree/master.svg?style=svg)](https://circleci.com/gh/uktrade/directory-validators/tree/master)
 
+## Coverage
+
+[![codecov](https://codecov.io/gh/uktrade/directory-validators/branch/master/graph/badge.svg)](https://codecov.io/gh/uktrade/directory-validators)
+
 ## Requirements
 
 ## Installation
