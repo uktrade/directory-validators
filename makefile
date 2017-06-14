@@ -13,6 +13,14 @@ flake8:
 pytest:
 	pytest . --cov=. --capture=no $(pytest_args)
 
+CODECOV := \
+	if [ "$$CODECOV_REPO_TOKEN" != "" ]; then \
+	   codecov --token=$$CODECOV_REPO_TOKEN ;\
+	fi
+
+
 test: flake8 pytest
+	$(CODECOV)
+
 
 .PHONY: build clean test_requirements flake8 pytest test
