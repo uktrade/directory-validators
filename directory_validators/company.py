@@ -1,4 +1,3 @@
-import string
 from urllib import parse
 
 from django.conf import settings
@@ -8,7 +7,7 @@ from directory_validators import helpers
 from directory_validators import constants
 
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
-KEYWORD_SPECIAL_CHARS = 'Special characters are not allowed.'
+KEYWORD_SPECIAL_CHARS = 'Please remove punctuation.'
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
 MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
@@ -46,8 +45,7 @@ def keywords_special_characters(keywords):
     Raises:
         django.forms.ValidationError
     """
-    invalid_chars = string.punctuation.replace(',', '')  # comma is allowed
-    invalid_chars += '\t\n'
+    invalid_chars = '!\"#$%&\'()*+-./:;<=>?@[\\]^_{|}~\t\n'
     if any(char in invalid_chars for char in keywords):
         raise ValidationError(KEYWORD_LIMIT)
 
