@@ -152,3 +152,26 @@ def test_case_study_social_link_linkedin_rejects_wrong_service():
     message = company.MESSAGE_NOT_LINKEDIN
     with pytest.raises(forms.ValidationError, message=message):
         company.case_study_social_link_linkedin(url)
+
+
+@pytest.mark.parametrize('value', [
+    'thing <a href="#">',
+    '<a onmouseover=javascript:func()>stuff</a>'
+])
+def test_no_html_invalid(value):
+    message = company.MESSAGE_REMOVE_HTML
+    with pytest.raises(forms.ValidationError, message=message):
+        company.no_html(value)
+
+
+@pytest.mark.parametrize('value', [
+    'thing',
+    'thing 1 < 2',
+    'thing 1 <2',
+    'thing 1<2',
+    'thing 1<2>3',
+    'thing 1<2 >3',
+    'thing 1<2 > 3',
+])
+def test_no_html_valid(value):
+    assert company.no_html(value) is None
