@@ -2,6 +2,7 @@ from urllib import parse
 
 from django.conf import settings
 from django.core.validators import ValidationError
+from django.utils.html import strip_tags
 
 from directory_validators import helpers
 from directory_validators import constants
@@ -17,6 +18,7 @@ MESSAGE_INVALID_IMAGE_FORMAT = (
         ', '.join(constants.ALLOWED_IMAGE_FORMATS)
     )
 )
+MESSAGE_REMOVE_HTML = 'Please remove the HTML.'
 
 
 def keywords_word_limit(keywords):
@@ -147,3 +149,8 @@ def case_study_social_link_linkedin(value):
     parsed = parse.urlparse(value.lower())
     if not parsed.netloc.endswith('linkedin.com'):
         raise ValidationError(MESSAGE_NOT_LINKEDIN)
+
+
+def no_html(value):
+    if value != strip_tags(value):
+        raise ValidationError(MESSAGE_REMOVE_HTML)
