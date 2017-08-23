@@ -47,3 +47,13 @@ def test_no_website_allowed_scheme():
     value = 'http://www.foo.bar'
     with pytest.raises(forms.ValidationError, message=company.NO_WEBSITE):
         company.no_website(value)
+
+
+def test_no_email_allowed_happy_path():
+    value = 'foo'
+    company.no_email(value)
+
+
+def test_no_website_allowed_happy_path():
+    value = 'foo.'
+    company.no_website(value)
