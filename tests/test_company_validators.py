@@ -29,3 +29,21 @@ def test_keywords_not_printable_special_characters():
     with pytest.raises(forms.ValidationError,
                        message=company.KEYWORD_SPECIAL_CHARS):
         company.keywords_special_characters(choices)
+
+
+def test_no_email_allowed():
+    value = 'foo@bar.com'
+    with pytest.raises(forms.ValidationError, message=company.NO_EMAIL):
+        company.no_email(value)
+
+
+def test_no_website_allowed_no_scheme():
+    value = 'www.foo.bar'
+    with pytest.raises(forms.ValidationError, message=company.NO_WEBSITE):
+        company.no_website(value)
+
+
+def test_no_website_allowed_scheme():
+    value = 'http://www.foo.bar'
+    with pytest.raises(forms.ValidationError, message=company.NO_WEBSITE):
+        company.no_website(value)
