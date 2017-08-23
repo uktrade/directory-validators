@@ -1,7 +1,9 @@
 from urllib import parse
 
 from django.conf import settings
-from django.core.validators import ValidationError
+from django.core.validators import (
+    EmailValidator, ValidationError, URLValidator
+)
 from django.utils.html import strip_tags
 
 from directory_validators import helpers
@@ -9,6 +11,8 @@ from directory_validators import constants
 
 KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
 KEYWORD_SPECIAL_CHARS = 'Please remove punctuation.'
+NO_EMAIL = 'Please remove the email address.'
+NO_WEBSITE = 'Please remove the website address.'
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
 MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
@@ -19,6 +23,29 @@ MESSAGE_INVALID_IMAGE_FORMAT = (
     )
 )
 MESSAGE_REMOVE_HTML = 'Please remove the HTML.'
+
+
+def no_email(value):
+    """Confirms no email is entered in the field."""
+    try:
+        EmailValidator()(value)
+    except ValidationError:
+        return
+    else:
+        raise ValidationError(NO_EMAIL)
+
+
+def no_website(value):
+    """Confirms no website is entered in the field."""
+    if not value.startswith('http'):
+        # add scheme just for the sake of validation
+        value = 'http://{}'.format(value)
+    try:
+        URLValidator()(value)
+    except ValidationError:
+        return
+    else:
+        raise ValidationError(NO_WEBSITE)
 
 
 def keywords_word_limit(keywords):
