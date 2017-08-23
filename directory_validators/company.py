@@ -7,8 +7,8 @@ from django.utils.html import strip_tags
 from directory_validators import helpers
 from directory_validators import constants
 
-KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
-KEYWORD_SPECIAL_CHARS = 'Please remove punctuation.'
+MESSAGE_KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
+MESSAGE_KEYWORD_SPECIAL_CHARS = 'Please remove punctuation.'
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
 MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
@@ -34,7 +34,7 @@ def keywords_word_limit(keywords):
     """
 
     if len(helpers.tokenize_keywords(keywords)) > 10:
-        raise ValidationError(KEYWORD_LIMIT)
+        raise ValidationError(MESSAGE_KEYWORD_LIMIT)
 
 
 def keywords_special_characters(keywords):
@@ -49,7 +49,7 @@ def keywords_special_characters(keywords):
     """
     invalid_chars = '!\"#$%&\'()*+-./:;<=>?@[\\]^_{|}~\t\n'
     if any(char in invalid_chars for char in keywords):
-        raise ValidationError(KEYWORD_LIMIT)
+        raise ValidationError(MESSAGE_KEYWORD_SPECIAL_CHARS)
 
 
 def image_format(value):
