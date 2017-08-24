@@ -8,7 +8,9 @@ from directory_validators import helpers
 from directory_validators import constants
 
 MESSAGE_KEYWORD_LIMIT = 'Please choose no more than 10 keywords.'
-MESSAGE_KEYWORD_SPECIAL_CHARS = 'Please remove punctuation.'
+MESSAGE_KEYWORD_SPECIAL_CHARS = (
+    'You can only enter letters, numbers and commas.'
+)
 MESSAGE_FILE_TOO_BIG = 'File is too big.'
 MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
 MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
