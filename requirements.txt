@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.ini
 #
-django==1.9.13
+django==1.10.7
 olefile==0.44             # via pillow
 phonenumberslite==7.7.4
 pillow==4.2.1
