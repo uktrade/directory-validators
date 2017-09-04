@@ -55,8 +55,9 @@ def test_case_study_image_filesize_rejects_too_big():
     size = settings.VALIDATOR_MAX_CASE_STUDY_IMAGE_SIZE_BYTES + 1
     mock_file = create_mock_file_of_size(size)
     expected_message = company.MESSAGE_FILE_TOO_BIG
-    with pytest.raises(forms.ValidationError, message=expected_message):
+    with pytest.raises(forms.ValidationError) as excinfo:
         company.case_study_image_filesize(mock_file)
+    assert expected_message in str(excinfo.value)
 
 
 def test_case_study_image_filesize_accepts_not_too_big():
@@ -69,8 +70,9 @@ def test_case_study_video_filesize_rejects_too_big():
     size = settings.VALIDATOR_MAX_CASE_STUDY_VIDEO_SIZE_BYTES + 1
     mock_file = create_mock_file_of_size(size)
     expected_message = company.MESSAGE_FILE_TOO_BIG
-    with pytest.raises(forms.ValidationError, message=expected_message):
+    with pytest.raises(forms.ValidationError) as excinfo:
         company.case_study_video_filesize(mock_file)
+    assert expected_message in str(excinfo.value)
 
 
 def test_case_study_video_filesize_accepts_not_too_big():
@@ -99,9 +101,10 @@ def test_case_study_social_link_facebook_accepts_subdomains():
 
 def test_case_study_social_link_facebook_rejects_wrong_service():
     url = 'http://google.com'
-    message = company.MESSAGE_NOT_FACEBOOK
-    with pytest.raises(forms.ValidationError, message=message):
+    expected_message = company.MESSAGE_NOT_FACEBOOK
+    with pytest.raises(forms.ValidationError) as excinfo:
         company.case_study_social_link_facebook(url)
+    assert expected_message in str(excinfo.value)
 
 
 def test_case_study_social_link_twitter_accepts_schemes():
@@ -124,9 +127,10 @@ def test_case_study_social_link_twitter_accepts_subdomains():
 
 def test_case_study_social_link_twitter_rejects_wrong_service():
     url = 'http://google.com'
-    message = company.MESSAGE_NOT_TWITTER
-    with pytest.raises(forms.ValidationError, message=message):
+    expected_message = company.MESSAGE_NOT_TWITTER
+    with pytest.raises(forms.ValidationError) as excinfo:
         company.case_study_social_link_twitter(url)
+    assert expected_message in str(excinfo.value)
 
 
 def test_case_study_social_link_linkedin_accepts_schemes():
@@ -149,9 +153,10 @@ def test_case_study_social_link_linkedin_accepts_subdomains():
 
 def test_case_study_social_link_linkedin_rejects_wrong_service():
     url = 'http://google.com'
-    message = company.MESSAGE_NOT_LINKEDIN
-    with pytest.raises(forms.ValidationError, message=message):
+    expected_message = company.MESSAGE_NOT_LINKEDIN
+    with pytest.raises(forms.ValidationError) as excinfo:
         company.case_study_social_link_linkedin(url)
+    assert expected_message in str(excinfo.value)
 
 
 @pytest.mark.parametrize('value', [
@@ -159,9 +164,10 @@ def test_case_study_social_link_linkedin_rejects_wrong_service():
     '<a onmouseover=javascript:func()>stuff</a>'
 ])
 def test_no_html_invalid(value):
-    message = company.MESSAGE_REMOVE_HTML
-    with pytest.raises(forms.ValidationError, message=message):
+    expected_message = company.MESSAGE_REMOVE_HTML
+    with pytest.raises(forms.ValidationError) as excinfo:
         company.no_html(value)
+    assert expected_message in str(excinfo.value)
 
 
 @pytest.mark.parametrize('value', [
