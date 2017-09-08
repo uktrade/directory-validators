@@ -1,13 +1,12 @@
 # directory-validators
 [Directory of UK Exporters validators](https://www.directory.exportingisgreat.gov.uk/)
 
-## Build status
+[![code-climate-image]][code-climate]
+[![circle-ci-image]][circle-ci]
+[![codecov-image]][codecov]
+[![gemnasium-image]][gemnasium]
 
-[![CircleCI](https://circleci.com/gh/uktrade/directory-validators/tree/master.svg?style=svg)](https://circleci.com/gh/uktrade/directory-validators/tree/master)
-
-## Coverage
-
-[![codecov](https://codecov.io/gh/uktrade/directory-validators/branch/master/graph/badge.svg)](https://codecov.io/gh/uktrade/directory-validators)
+---
 
 ## Requirements
 
@@ -37,3 +36,15 @@ enrolment.validate_email('test@example.com')
 
 ## Testing
 	$ py.test .
+
+[code-climate-image]: https://codeclimate.com/github/uktrade/directory-validators/badges/issue_count.svg
+[code-climate]: https://codeclimate.com/github/uktrade/directory-validators
+
+[circle-ci-image]: https://circleci.com/gh/uktrade/directory-validators/tree/master.svg?style=svg
+[circle-ci]: https://circleci.com/gh/uktrade/directory-validators/tree/master
+
+[codecov-image]: https://codecov.io/gh/uktrade/directory-validators/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/uktrade/directory-validators
+
+[gemnasium-image]: https://gemnasium.com/badges/github.com/uktrade/directory-validators.svg
+[gemnasium]: https://gemnasium.com/github.com/uktrade/directory-validators
