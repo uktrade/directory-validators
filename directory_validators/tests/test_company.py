@@ -181,3 +181,16 @@ def test_no_html_invalid(value):
 ])
 def test_no_html_valid(value):
     assert company.no_html(value) is None
+
+
+@pytest.mark.parametrize('value', [
+    'RC000304',
+    'rc000304'
+])
+def test_no_royal_charter_invalid(value):
+    with pytest.raises(forms.ValidationError):
+        company.no_royal_charter(value)
+
+
+def test_no_royal_charter_valid():
+    assert company.no_royal_charter('99000304') is None
