@@ -62,16 +62,18 @@ def test_email_domain_disposable_accepts_corporate_email():
 @mock.patch('phonenumbers.parse')
 def test_domestic_mobile_phone_number_parse_error(mock_parse):
     mock_parse.side_effect = NumberParseException(error_type=None, msg='')
-    expected = enrolment.MESSAGE_INVALID_PHONE_NUMBER
-    with pytest.raises(forms.ValidationError, messages=expected):
+    expected_message = enrolment.MESSAGE_INVALID_PHONE_NUMBER
+    with pytest.raises(forms.ValidationError) as excinfo:
         enrolment.domestic_mobile_phone_number('')
+    assert expected_message in str(excinfo.value)
 
 
 @mock.patch('phonenumbers.is_valid_number', mock.Mock(return_value=False))
 def test_domestic_mobile_phone_number_invalid():
-    expected = enrolment.MESSAGE_INVALID_PHONE_NUMBER
-    with pytest.raises(forms.ValidationError, messages=expected):
+    expected_message = enrolment.MESSAGE_INVALID_PHONE_NUMBER
+    with pytest.raises(forms.ValidationError) as excinfo:
         enrolment.domestic_mobile_phone_number('07605437499')
+    assert expected_message in str(excinfo.value)
 
 
 @mock.patch('phonenumbers.is_valid_number', mock.Mock(return_value=True))
@@ -91,7 +93,8 @@ def test_domestic_mobile_phone_number_end_to_end_call(
 
 
 def test_domestic_mobile_phone_number_rejects_non_mobile():
-    expected = enrolment.MESSAGE_INVALID_PHONE_NUMBER
+    expected_message = enrolment.MESSAGE_INVALID_PHONE_NUMBER
     for value in ['+442082919192', '02082919192']:
-        with pytest.raises(forms.ValidationError, message=expected):
+        with pytest.raises(forms.ValidationError) as excinfo:
             enrolment.domestic_mobile_phone_number(value)
+        assert expected_message in str(excinfo.value)

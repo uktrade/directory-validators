@@ -21,6 +21,9 @@ MESSAGE_INVALID_IMAGE_FORMAT = (
     )
 )
 MESSAGE_REMOVE_HTML = 'Please remove the HTML.'
+MESSAGE_NO_ROYAL_CHARTER = (
+    'Please contact support to register a Royal Charter company.'
+)
 
 
 def keywords_word_limit(keywords):
@@ -156,3 +159,18 @@ def case_study_social_link_linkedin(value):
 def no_html(value):
     if value != strip_tags(value):
         raise ValidationError(MESSAGE_REMOVE_HTML)
+
+
+def no_royal_charter(value):
+    """
+    Confirms that the company number is for for a Royal Charter.
+
+    Args:
+        value (string): The company number to check.
+
+    Raises:
+        django.forms.ValidationError
+
+    """
+    if value.lower().startswith('rc'):
+        raise ValidationError(MESSAGE_NO_ROYAL_CHARTER)
