@@ -2,7 +2,7 @@ import pytest
 
 from django import forms
 
-from directory_validators.generics import not_contains_url
+from directory_validators import common
 
 # https://github.com/django/django/blob/1.10/tests/validators/valid_urls.txt
 urls = [
@@ -279,10 +279,11 @@ def test_not_contain_url_does_contains_urls():
     for url in urls:
         for value_template in value_templates:
             value = value_template.format(url=url)
-            with pytest.raises(forms.ValidationError):
-                not_contains_url(value)
+            with pytest.raises(forms.ValidationError) as excinfo:
+                common.not_contains_url_or_email(value)
+            assert common.MESSAGE_REMOVE_URL in str(excinfo.value)
 
 
 def test_not_contain_url_does_not_contain_url():
-    assert not_contains_url('Thing') is None
-    assert not_contains_url('') is None
+    assert common.not_contains_url_or_email('Thing') is None
+    assert common.not_contains_url_or_email('') is None
