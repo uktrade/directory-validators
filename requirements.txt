@@ -1,4 +1,4 @@
-django==>=1.9,<2.0a1
+django>=1.9,<2.0a1
 olefile==0.44             # via pillow
 phonenumberslite==7.7.4
 pillow==4.2.1
