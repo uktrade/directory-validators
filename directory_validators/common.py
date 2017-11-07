@@ -2,7 +2,7 @@ import re
 
 from django.core.validators import RegexValidator
 
-MESSAGE_REMOVE_URL = 'Please remove the web and email addresses'
+MESSAGE_REMOVE_URL = 'Please remove the web or email addresses'
 
 
 class ContainsUrlValidator(RegexValidator):
