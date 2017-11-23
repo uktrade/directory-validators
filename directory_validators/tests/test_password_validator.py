@@ -11,6 +11,8 @@ from directory_validators import password_validation
 def test_alphabetic_password_validator(password):
     validator = password_validation.AlphabeticPasswordValidator()
     assert validator.validate(password=password) is None
+    assert validator.get_help_text() == \
+        password_validation.ALPHABETIC_HELP_TEXT
 
 
 @pytest.mark.parametrize(
