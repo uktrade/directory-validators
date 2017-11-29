@@ -3,8 +3,9 @@ from django.core.exceptions import ValidationError
 
 ALPHABETIC_VALIDATION_MESSAGE = 'This password contains letters only.'
 ALPHABETIC_HELP_TEXT = 'Your password cannot contain letters only.'
-PASSWORD_WORD_VALIDATION_MESSAGE = 'This password contain the word password'
-PASSWORD_WORD_HELP_TEXT = 'Your password cannot contain the word password'
+PASSWORD_WORD_VALIDATION_MESSAGE = \
+    'This password contains the word \'password\''
+PASSWORD_WORD_HELP_TEXT = 'Your password cannot contain the word \'password\''
 
 
 class AlphabeticPasswordValidator:
