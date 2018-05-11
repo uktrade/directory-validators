@@ -183,14 +183,17 @@ def test_no_html_valid(value):
     assert company.no_html(value) is None
 
 
-@pytest.mark.parametrize('value', [
-    'RC000304',
-    'rc000304'
+@pytest.mark.parametrize('prefix', [
+    'IP', 'SP', 'IC', 'SI', 'RS', 'NP', 'NV', 'RC', 'SR', 'NR',
+    'ip', 'sp', 'ic', 'si', 'rc', 'np', 'nv', 'rc', 'sr', 'nr',
 ])
-def test_no_royal_charter_invalid(value):
+def test_no_no_company_with_insufficient_companies_house_data_invalid(prefix):
+    value = prefix + '000304'
     with pytest.raises(forms.ValidationError):
-        company.no_royal_charter(value)
+        company.no_company_with_insufficient_companies_house_data(value)
 
 
-def test_no_royal_charter_valid():
-    assert company.no_royal_charter('99000304') is None
+def test_no_company_with_insufficient_companies_house_data_valid():
+    number = '99000304'
+    actual = company.no_company_with_insufficient_companies_house_data(number)
+    assert actual is None
