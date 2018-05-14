@@ -21,8 +21,8 @@ MESSAGE_INVALID_IMAGE_FORMAT = (
     )
 )
 MESSAGE_REMOVE_HTML = 'Please remove the HTML.'
-MESSAGE_NO_ROYAL_CHARTER = (
-    'Please contact support to register a Royal Charter company.'
+MESSAGE_INSUFFICIENT_DATA = (
+    'Please contact support to register a %(name)s.'
 )
 
 
@@ -161,9 +161,24 @@ def no_html(value):
         raise ValidationError(MESSAGE_REMOVE_HTML)
 
 
-def no_royal_charter(value):
+company_types_with_insufficient_companies_house_data = (
+    ('IP', 'Industrial & Provident Company'),
+    ('SP', 'Scottish Industrial/Provident Company'),
+    ('IC', 'ICVC'),
+    ('SI', 'Scottish ICVC'),
+    ('RS', 'Registered Society'),
+    ('NP', 'Northern Ireland Industrial/Provident Company or Credit Union'),
+    ('NV', 'Northern Ireland ICVC'),
+    ('RC', 'Royal Charter Company'),
+    ('SR', 'Scottish Royal Charter Company'),
+    ('NR', 'Northern Ireland Royal Charter Company'),
+)
+
+
+def no_company_with_insufficient_companies_house_data(value):
     """
-    Confirms that the company number is for for a Royal Charter.
+    Confirms that the company number is not for for a company that
+    Companies House does not hold information on.
 
     Args:
         value (string): The company number to check.
@@ -172,5 +187,9 @@ def no_royal_charter(value):
         django.forms.ValidationError
 
     """
-    if value.lower().startswith('rc'):
-        raise ValidationError(MESSAGE_NO_ROYAL_CHARTER)
+
+    for prefix, name in company_types_with_insufficient_companies_house_data:
+        if value.upper().startswith(prefix):
+            raise ValidationError(
+                MESSAGE_INSUFFICIENT_DATA, params={'name': name}
+            )
