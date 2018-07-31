@@ -4,7 +4,7 @@
 [![code-climate-image]][code-climate]
 [![circle-ci-image]][circle-ci]
 [![codecov-image]][codecov]
-[![gemnasium-image]][gemnasium]
+[![pypi-image]][pypi]
 
 ---
 
@@ -62,5 +62,5 @@ Then run the following command:
 [codecov-image]: https://codecov.io/gh/uktrade/directory-validators/branch/master/graph/badge.svg
 [codecov]: https://codecov.io/gh/uktrade/directory-validators
 
-[gemnasium-image]: https://gemnasium.com/badges/github.com/uktrade/directory-validators.svg
-[gemnasium]: https://gemnasium.com/github.com/uktrade/directory-validators
+[pypi-image]: https://badge.fury.io/py/directory-validators.svg
+[pypi]: https://badge.fury.io/py/directory-validators
