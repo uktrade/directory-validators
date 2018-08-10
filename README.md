@@ -5,7 +5,6 @@
 [![circle-ci-image]][circle-ci]
 [![codecov-image]][codecov]
 [![pypi-image]][pypi]
-[![snyk-image]][snyk]
 
 ---
 
@@ -65,6 +64,3 @@ Then run the following command:
 
 [pypi-image]: https://badge.fury.io/py/directory-validators.svg
 [pypi]: https://badge.fury.io/py/directory-validators
-
-[snyk-image]: https://snyk.io/test/github/uktrade/directory-validators/badge.svg
-[snyk]: https://snyk.io/test/github/uktrade/directory-validators
