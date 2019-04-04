@@ -172,6 +172,7 @@ company_types_with_insufficient_companies_house_data = (
     ('RC', 'Royal Charter Company'),
     ('SR', 'Scottish Royal Charter Company'),
     ('NR', 'Northern Ireland Royal Charter Company'),
+    ('CS', 'Scottish charitable incorporated organisation'),
 )
 
 
