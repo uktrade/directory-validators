@@ -14,7 +14,7 @@ idna==2.6                 # via requests
 mccabe==0.5.3             # via flake8
 olefile==0.44
 phonenumberslite==7.7.4
-pillow==4.2.1
+pillow==6.0.0
 pkginfo==1.4.1            # via twine
 py==1.5.2                 # via pytest
 pycodestyle==2.0.0        # via flake8
