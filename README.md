@@ -5,6 +5,7 @@
 [![circle-ci-image]][circle-ci]
 [![codecov-image]][codecov]
 [![pypi-image]][pypi]
+[![semver-image]][semver]
 
 ---
 
@@ -64,3 +65,6 @@ Then run the following command:
 
 [pypi-image]: https://badge.fury.io/py/directory-validators.svg
 [pypi]: https://badge.fury.io/py/directory-validators
+
+[semver-image]: https://img.shields.io/badge/Versioning%20strategy-SemVer-5FBB1C.svg
+[semver]: https://semver.org
