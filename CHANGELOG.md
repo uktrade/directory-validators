@@ -1,6 +1,6 @@
 # Changelog
 
-## [5.6.0](https://pypi.org/project/directory-validators/6.0.0/) (2019-07-17)
+## [6.0.0](https://pypi.org/project/directory-validators/6.0.0/) (2019-07-17)
 [Full Changelog](https://github.com/uktrade/directory-validators/pull/56/files)
 
 ### Breaking Change
