@@ -1,10 +1,10 @@
 # Changelog
 
-## [6.0.0](https://pypi.org/project/directory-validators/6.0.0/) (2019-07-17)
-[Full Changelog](https://github.com/uktrade/directory-validators/pull/56/files)
+## [5.2.0](https://pypi.org/project/directory-validators/5.2.0/) (2019-07-17)
+[Full Changelog](https://github.com/uktrade/directory-validators/pull/57/files)
 
 ### Breaking Change
-- no ticket - Upgrade to django 2.2
+- no ticket - Add support for django 2
 
 ## [5.1.1](https://pypi.org/project/directory-validators/5.1.1/) (2019-05-29)
 [Full Changelog](https://github.com/uktrade/directory-validators/pull/55/files)
