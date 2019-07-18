@@ -13,6 +13,7 @@ setup(
     description='Django validators for Export Directory.',
     packages=find_packages(exclude=["tests.*", "tests"]),
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     include_package_data=True,
     install_requires=[
         'django>=1.11.22,<3.0a1',
