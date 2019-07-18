@@ -1,7 +1,7 @@
 # Changelog
 
 ## [5.2.0](https://pypi.org/project/directory-validators/5.2.0/) (2019-07-17)
-[Full Changelog](https://github.com/uktrade/directory-validators/pull/57/files)
+[Full Changelog](https://github.com/uktrade/directory-validators/pull/58/files)
 
 ### Breaking Change
 - no ticket - Add support for django 2
