@@ -19,7 +19,7 @@ setup(
         'django>=1.11.22,<3.0a1',
         'olefile==0.44',
         'phonenumberslite==7.7.4',
-        'pillow==4.2.1',
+        'pillow==6.2.0',
         'pytz==2017.2',
         'urllib3>=1.24.2<2.0.0',
     ],
