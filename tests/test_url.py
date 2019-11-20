@@ -2,7 +2,7 @@ import pytest
 
 from django import forms
 
-from directory_validators import common
+from directory_validators import url
 
 # https://github.com/django/django/blob/1.10/tests/validators/valid_urls.txt
 urls = [
@@ -276,14 +276,92 @@ def test_not_contain_url_does_contains_urls():
         'Thing {url} Thing', 'Thing{url}Thing', 'Thing{url} Thing',  # middle
         'Thing{url}', 'Thing {url}',  # at the end
     ]
-    for url in urls:
+    for item in urls:
         for value_template in value_templates:
-            value = value_template.format(url=url)
+            value = value_template.format(url=item)
             with pytest.raises(forms.ValidationError) as excinfo:
-                common.not_contains_url_or_email(value)
-            assert common.MESSAGE_REMOVE_URL in str(excinfo.value)
+                url.not_contains_url_or_email(value)
+            assert url.MESSAGE_REMOVE_URL in str(excinfo.value)
 
 
 def test_not_contain_url_does_not_contain_url():
-    assert common.not_contains_url_or_email('Thing') is None
-    assert common.not_contains_url_or_email('') is None
+    assert url.not_contains_url_or_email('Thing') is None
+    assert url.not_contains_url_or_email('') is None
+
+
+def test_is_facebook_accepts_schemes():
+    expected_legal_urls = [
+        'https://facebook.com/thing',
+        'http://facebook.com/thing',
+    ]
+    for value in expected_legal_urls:
+        assert url.is_facebook(value) is None
+
+
+def test_is_facebook_accepts_subdomains():
+    expected_legal_urls = [
+        'http://thing.facebook.com/thing',
+        'http://www.facebook.com/thing',
+    ]
+    for value in expected_legal_urls:
+        assert url.is_facebook(value) is None
+
+
+def test_is_facebook_rejects_wrong_service():
+    value = 'http://google.com'
+    expected_message = url.MESSAGE_NOT_FACEBOOK
+    with pytest.raises(forms.ValidationError) as excinfo:
+        url.is_facebook(value)
+    assert expected_message in str(excinfo.value)
+
+
+def test_is_twitter_accepts_schemes():
+    expected_legal_urls = [
+        'https://twitter.com/thing',
+        'http://twitter.com/thing',
+    ]
+    for value in expected_legal_urls:
+        assert url.is_twitter(value) is None
+
+
+def test_is_twitter_accepts_subdomains():
+    expected_legal_urls = [
+        'http://thing.twitter.com/thing',
+        'http://www.twitter.com/thing',
+    ]
+    for value in expected_legal_urls:
+        assert url.is_twitter(value) is None
+
+
+def test_is_twitter_rejects_wrong_service():
+    value = 'http://google.com'
+    expected_message = url.MESSAGE_NOT_TWITTER
+    with pytest.raises(forms.ValidationError) as excinfo:
+        url.is_twitter(value)
+    assert expected_message in str(excinfo.value)
+
+
+def test_is_linkedin_accepts_schemes():
+    expected_legal_urls = [
+        'https://linkedin.com/thing',
+        'http://linkedin.com/thing',
+    ]
+    for value in expected_legal_urls:
+        assert url.is_linkedin(value) is None
+
+
+def test_is_linkedin_accepts_subdomains():
+    expected_legal_urls = [
+        'http://thing.linkedin.com/thing',
+        'http://www.linkedin.com/thing',
+    ]
+    for value in expected_legal_urls:
+        assert url.is_linkedin(value) is None
+
+
+def test_is_linkedin_rejects_wrong_service():
+    value = 'http://google.com'
+    expected_message = url.MESSAGE_NOT_LINKEDIN
+    with pytest.raises(forms.ValidationError) as excinfo:
+        url.is_linkedin(value)
+    assert expected_message in str(excinfo.value)
