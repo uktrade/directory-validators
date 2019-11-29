@@ -1,5 +1,10 @@
 # Changelog
 
+## [6.1.0](https://pypi.org/project/directory-validators/6.1.0/) (2019-11-29)
+[Full Changelog](https://github.com/uktrade/directory-validators/pull/60/files)
+
+- no ticket - add space chars-password validator
+
 ## [6.0.0](https://pypi.org/project/directory-validators/6.0.0/) (2019-11-20)
 [Full Changelog](https://github.com/uktrade/directory-validators/pull/60/files)
 

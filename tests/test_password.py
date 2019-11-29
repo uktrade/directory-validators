@@ -52,3 +52,14 @@ def test_common_word_validator_exception_raised(value):
     with pytest.raises(ValidationError) as e:
         validator.validate(password=value)
     assert password.PASSWORD_WORD_VALIDATION_MESSAGE in str(e.value)
+
+
+@pytest.mark.parametrize(
+    'value',
+    ('1 2 a c 4 5 6 ', ' jnfefedef', 'efwefweef ', '  4   ')
+)
+def test_whitespace_password_validator(value):
+    validator = password.WhitespacePasswordValidator()
+    with pytest.raises(ValidationError) as e:
+        assert validator.validate(password=value)
+    assert validator.get_help_text() == password.WHITESPACE_WORD_HELP_TEXT
