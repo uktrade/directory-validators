@@ -8,6 +8,7 @@ PASSWORD_WORD_HELP_TEXT = 'Your password cannot contain the word \'password\''
 WHITESPACE_WORD_HELP_TEXT = 'Your password cannot contain spaces'
 WHITESPACE_VALIDATION_MESSAGE = 'Your password cannot contain spaces'
 
+
 class AlphabeticPasswordValidator:
 
     def validate(self, password, user=None):
@@ -32,10 +33,7 @@ class WhitespacePasswordValidator:
 
     def validate(self, password, user=None):
         if re.search(' ', password, re.IGNORECASE):
-            raise ValidationError(
-                WHITESPACE_VALIDATION_MESSAGE,
-                code='password_has_spaces_password'
-            )
+            raise ValidationError(WHITESPACE_VALIDATION_MESSAGE, code='password_has_spaces_password')
 
     def get_help_text(self):
         return WHITESPACE_WORD_HELP_TEXT
