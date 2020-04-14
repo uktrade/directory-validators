@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.0.1](https://pypi.org/project/directory-validators/6.0.1/) (2020-04-06)
+[Full Changelog](https://github.com/uktrade/directory-validators/pull/61/files)
+
+### Implemented enhancements
+- no ticket - Upgrade Pillow
+
 ## [6.0.0](https://pypi.org/project/directory-validators/6.0.0/) (2019-11-20)
 [Full Changelog](https://github.com/uktrade/directory-validators/pull/60/files)
 

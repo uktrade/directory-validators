@@ -1,24 +1,24 @@
 """
-Export Directory API client
+Shared validators for GREAT
 """
 from setuptools import setup, find_packages
 
 
 setup(
     name='directory_validators',
-    version='6.0.0',
+    version='6.0.1',
     url='https://github.com/uktrade/directory-validators',
     license='MIT',
     author='Department for International Trade',
-    description='Django validators for Export Directory.',
+    description='Django validators for GREAT.',
     packages=find_packages(exclude=["tests.*", "tests"]),
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     include_package_data=True,
     install_requires=[
         'django>=1.11.22,<3.0a1',
-        'olefile==0.44',
-        'pillow==6.2.1',
+        'olefile>=0.44,<1.0.0',
+        'pillow>=6.2.2,<7.0.0',
         'pytz==2017.2',
         'urllib3>=1.24.2<2.0.0',
     ],
