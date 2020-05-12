@@ -1,7 +1,7 @@
 # Changelog
 
 ## [6.0.2](https://pypi.org/project/directory-validators/6.0.2/) (2020-05-11)
-[Full Changelog](https://github.com/uktrade/directory-validators/pull/62/files)
+[Full Changelog](https://github.com/uktrade/directory-validators/pull/63/files)
 
 ## [6.0.1](https://pypi.org/project/directory-validators/6.0.1/) (2020-04-06)
 [Full Changelog](https://github.com/uktrade/directory-validators/pull/61/files)
