@@ -1,5 +1,9 @@
 # Changelog
 
+
+## [6.0.5](https://pypi.org/project/directory-validators/6.0.5/) (2021-03-19)
+- no ticket - upgrade pillow lib
+
 ## [6.0.4](https://pypi.org/project/directory-validators/6.0.4/) (2020-11-05)
 - no ticket - upgrade pytz lib 
 
