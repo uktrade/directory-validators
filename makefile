@@ -5,6 +5,7 @@ clean:
 	-find . -type d -name "__pycache__" -delete
 
 test_requirements:
+	pip install --upgrade pip
 	pip install -e .[test]
 
 flake8:
