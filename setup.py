@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='directory_validators',
-    version='6.0.5',
+    version='6.0.6',
     url='https://github.com/uktrade/directory-validators',
     license='MIT',
     author='Department for International Trade',
@@ -18,7 +18,7 @@ setup(
     install_requires=[
         'django>=1.11.22,<3.0a1',
         'olefile>=0.44,<1.0.0',
-        'Pillow>=8.1.1',
+        'Pillow>=8.2.*',
         'pytz>=2017.2,<=2020.1',
         'urllib3>=1.24.2<2.0.0',
     ],
