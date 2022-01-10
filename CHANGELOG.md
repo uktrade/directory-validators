@@ -1,5 +1,8 @@
 # Changelog
 
+## [7.0.1](https://pypi.org/project/directory-validators/7.0.1/) (2021-06-24)
+- no ticket - dependencies update
+
 ## [7.0.0](https://pypi.org/project/directory-validators/7.0.0/) (2021-06-24)
 - no ticket - dependencies update
 
@@ -11,7 +14,7 @@
 - no ticket - upgrade pillow lib
 
 ## [6.0.4](https://pypi.org/project/directory-validators/6.0.4/) (2020-11-05)
-- no ticket - upgrade pytz lib 
+- no ticket - upgrade pytz lib
 
 
 ## [6.0.3](https://pypi.org/project/directory-validators/6.0.3/) (2020-08-04)
@@ -76,6 +79,6 @@
 - no ticket - PyPI now renders the markdown readme
 
 ### Fixed bugs:
-- Upgraded minimum supported django to avoid security vulnerability 
-- Upgraded minimum supported urllib3 to avoid security vulnerability 
+- Upgraded minimum supported django to avoid security vulnerability
+- Upgraded minimum supported urllib3 to avoid security vulnerability
 
