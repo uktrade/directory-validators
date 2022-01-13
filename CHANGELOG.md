@@ -1,5 +1,8 @@
 # Changelog
 
+## [8.0.0](https://pypi.org/project/directory-validators/8.0.0/) (2022-01-13)
+- no ticket - upgrade pillow library. Python 3.6 no longer supported.
+
 ## [7.0.1](https://pypi.org/project/directory-validators/7.0.1/) (2021-06-24)
 - no ticket - dependencies update
 
