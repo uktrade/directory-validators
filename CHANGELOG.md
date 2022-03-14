@@ -1,5 +1,8 @@
 # Changelog
 
+## [8.0.1](https://pypi.org/project/directory-validators/8.0.1/) (2022-03-14)
+- GLS-149 - upgrade pillow library.
+
 ## [8.0.0](https://pypi.org/project/directory-validators/8.0.0/) (2022-01-13)
 - no ticket - upgrade pillow library. Python 3.6 no longer supported.
 
