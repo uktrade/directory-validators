@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='directory_validators',
-    version='8.0.1',
+    version='9.0.0',
     url='https://github.com/uktrade/directory-validators',
     license='MIT',
     author='Department for International Trade',
@@ -16,7 +16,7 @@ setup(
     long_description_content_type='text/markdown',
     include_package_data=True,
     install_requires=[
-        'django>=2.2.24,<3.0a1',
+        'django>=2.2.24,<=3.2',
         'olefile>=0.44,<1.0.0',
         'Pillow>=9.0.1',
         'pytz>=2017.2,<=2021.3',
@@ -27,11 +27,11 @@ setup(
             'pytest==3.0.2',
             'pytest-cov==2.3.1',
             'pytest-sugar==0.8.0',
-            'flake8==3.0.4',
+            'flake8==5.0.4',
             'codecov>=2.1.8',
             'twine>=1.11.0,<2.0.0',
             'wheel>=0.31.0,<1.0.0',
-            'setuptools>=38.6.0,<39.0.0',
+            'setuptools>=65.0.2,<66.0.0',
         ]
     },
     classifiers=[
@@ -41,12 +41,14 @@ setup(
         'Framework :: Django :: 2.0',
         'Framework :: Django :: 2.1',
         'Framework :: Django :: 2.2',
+        'Framework :: Django :: 3.0',
+        'Framework :: Django :: 3.1',
+        'Framework :: Django :: 3.2',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ]
 )
