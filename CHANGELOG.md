@@ -1,5 +1,8 @@
 # Changelog
 
+## [9.0.0](https://pypi.org/project/directory-validators/9.0.0/) (2022-08-17)
+- GLS-382 - django 3 upgrade
+
 ## [8.0.1](https://pypi.org/project/directory-validators/8.0.1/) (2022-03-14)
 - GLS-149 - upgrade pillow library.
 
