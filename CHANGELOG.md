@@ -1,5 +1,8 @@
 # Changelog
 
+## [9.0.0](https://pypi.org/project/directory-validators/9.1.0/) (2022-09-17)
+- GLS-410 - django patch
+
 ## [9.0.0](https://pypi.org/project/directory-validators/9.0.0/) (2022-08-17)
 - GLS-382 - django 3 upgrade
 
