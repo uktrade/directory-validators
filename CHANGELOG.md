@@ -1,6 +1,10 @@
 # Changelog
 
-## [9.0.0](https://pypi.org/project/directory-validators/9.1.0/) (2022-09-17)
+
+## [9.2.0](https://pypi.org/project/directory-validators/9.2.0/) (2022-09-05)
+- GLS-410 - django patch
+
+## [9.1.0](https://pypi.org/project/directory-validators/9.1.0/) (2022-09-05)
 - GLS-410 - django patch
 
 ## [9.0.0](https://pypi.org/project/directory-validators/9.0.0/) (2022-08-17)
