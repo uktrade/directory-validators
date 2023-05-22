@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.3.0]() (2023-05-22)
+## [9.3.0](https://github.com/uktrade/directory-validators/pull/77) (2023-05-22)
 - KLS-622 - Bump Django to 4.2
 
 ## [9.2.1](https://pypi.org/project/directory-validators/9.2.1/) (2022-09-20)
