@@ -12,7 +12,33 @@ flake8:
 	flake8 .
 
 pytest:
-	pytest . --cov=. --cov-config=.coveragerc --capture=no $(pytest_args)
+	ENV_FILES='test,dev' \
+	pytest $(ARGUMENTS) \
+	--ignore=node_modules \
+	--capture=no \
+	--nomigrations \
+	--reuse-db \
+	-Wignore::DeprecationWarning \
+	-vv
+
+pytest_single:
+	ENV_FILES='test,dev' \
+	pytest \
+	    $(ARGUMENTS)
+		--junit-xml=./results/pytest_unit_report.xml \
+		--cov-config=.coveragerc \
+		--cov-report=html \
+		--cov=. \
+
+pytest_codecov:
+	ENV_FILES='test,dev' \
+	pytest \
+		--cov-config=.coveragerc \
+		--cov-report=term \
+		--cov=. \
+		--codecov \
+		$(ARGUMENTS)
+		
 
 CODECOV := \
 	if [ "$$CODECOV_REPO_TOKEN" != "" ]; then \
