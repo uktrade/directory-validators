@@ -10,7 +10,8 @@ jobs:
             python3 -m venv .venv
             . .venv/bin/activate
             make test_requirements
-            make test
+            make pytest_codecov -- --codecov-token=${CODECOV_TOKEN}
+            codecov
   publish_to_pypi:
     docker:
       - image: circleci/python:3.9
