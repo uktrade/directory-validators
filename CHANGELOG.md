@@ -1,5 +1,8 @@
 # Changelog
 
+## [9.3.1](https://pypi.org/project/directory-validators/9.3.1/) (2023-10-19)
+- KLS-1307 - upgrade pillow library
+
 ## [9.3.0](https://github.com/uktrade/directory-validators/pull/77) (2023-05-22)
 - KLS-622 - Bump Django to 4.2
 
