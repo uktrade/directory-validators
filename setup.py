@@ -16,7 +16,7 @@ setup(
     long_description_content_type='text/markdown',
     include_package_data=True,
     install_requires=[
-        'django>=3.2.18,<=4.2',
+        "django>=4.2.0,<=4.2.8",
         'olefile>=0.44,<1.0.0',
         'Pillow>=10.0.1',
         'pytz>=2017.2,<=2023.3',
