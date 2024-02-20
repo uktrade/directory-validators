@@ -1,5 +1,8 @@
 # Changelog
 
+## [9.3.3](https://pypi.org/project/directory-validators/9.3.3/) (2024-02-20)
+- KLS-1307 - Bump Django to 4.2.10 minimum
+
 ## [9.3.1](https://pypi.org/project/directory-validators/9.3.1/) (2023-10-19)
 - KLS-1307 - upgrade pillow library
 
