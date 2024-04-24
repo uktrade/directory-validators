@@ -158,18 +158,9 @@ urls = [
     "255.255.255.255",
     "224.0.0.0",
     "224.1.1.1",
-    (
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        "aaa.example.com"
-    ),
-    (
-        "example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        "aaaaaaaaaaa.com"
-    ),
-    (
-        "example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        "aaaaaaaaaaa"
-    ),
+    ("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "aaa.example.com"),
+    ("example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "aaaaaaaaaaa.com"),
+    ("example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "aaaaaaaaaaa"),
     (
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaa"
         "a.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -253,10 +244,7 @@ urls = [
         "www.example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         "aaaaaaaaaaa.com"
     ),
-    (
-        "www.example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        "aaaaaaaaaaa"
-    ),
+    ("www.example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "aaaaaaaaaaa"),
     (
         "www.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaa"
         "a.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -272,9 +260,13 @@ urls = [
 
 def test_not_contain_url_does_contains_urls():
     value_templates = [
-        '{url} Thing', '{url}Thing',  # at the start
-        'Thing {url} Thing', 'Thing{url}Thing', 'Thing{url} Thing',  # middle
-        'Thing{url}', 'Thing {url}',  # at the end
+        "{url} Thing",
+        "{url}Thing",  # at the start
+        "Thing {url} Thing",
+        "Thing{url}Thing",
+        "Thing{url} Thing",  # middle
+        "Thing{url}",
+        "Thing {url}",  # at the end
     ]
     for item in urls:
         for value_template in value_templates:
@@ -285,30 +277,30 @@ def test_not_contain_url_does_contains_urls():
 
 
 def test_not_contain_url_does_not_contain_url():
-    assert url.not_contains_url_or_email('Thing') is None
-    assert url.not_contains_url_or_email('') is None
+    assert url.not_contains_url_or_email("Thing") is None
+    assert url.not_contains_url_or_email("") is None
 
 
 def test_is_facebook_accepts_schemes():
     expected_legal_urls = [
-        'https://facebook.com/thing',
-        'http://facebook.com/thing',
+        "https://facebook.com/thing",
+        "http://facebook.com/thing",
     ]
     for value in expected_legal_urls:
-        assert url.is_facebook(value) is None
+        assert url.is_facebook(value) is True
 
 
 def test_is_facebook_accepts_subdomains():
     expected_legal_urls = [
-        'http://thing.facebook.com/thing',
-        'http://www.facebook.com/thing',
+        "http://thing.facebook.com/thing",
+        "http://www.facebook.com/thing",
     ]
     for value in expected_legal_urls:
-        assert url.is_facebook(value) is None
+        assert url.is_facebook(value) is True
 
 
 def test_is_facebook_rejects_wrong_service():
-    value = 'http://google.com'
+    value = "http://google.com"
     expected_message = url.MESSAGE_NOT_FACEBOOK
     with pytest.raises(forms.ValidationError) as excinfo:
         url.is_facebook(value)
@@ -317,24 +309,24 @@ def test_is_facebook_rejects_wrong_service():
 
 def test_is_twitter_accepts_schemes():
     expected_legal_urls = [
-        'https://twitter.com/thing',
-        'http://twitter.com/thing',
+        "https://twitter.com/thing",
+        "http://twitter.com/thing",
     ]
     for value in expected_legal_urls:
-        assert url.is_twitter(value) is None
+        assert url.is_twitter(value) is True
 
 
 def test_is_twitter_accepts_subdomains():
     expected_legal_urls = [
-        'http://thing.twitter.com/thing',
-        'http://www.twitter.com/thing',
+        "http://thing.twitter.com/thing",
+        "http://www.twitter.com/thing",
     ]
     for value in expected_legal_urls:
-        assert url.is_twitter(value) is None
+        assert url.is_twitter(value) is True
 
 
 def test_is_twitter_rejects_wrong_service():
-    value = 'http://google.com'
+    value = "http://google.com"
     expected_message = url.MESSAGE_NOT_TWITTER
     with pytest.raises(forms.ValidationError) as excinfo:
         url.is_twitter(value)
@@ -343,24 +335,24 @@ def test_is_twitter_rejects_wrong_service():
 
 def test_is_linkedin_accepts_schemes():
     expected_legal_urls = [
-        'https://linkedin.com/thing',
-        'http://linkedin.com/thing',
+        "https://linkedin.com/thing",
+        "http://linkedin.com/thing",
     ]
     for value in expected_legal_urls:
-        assert url.is_linkedin(value) is None
+        assert url.is_linkedin(value) is True
 
 
 def test_is_linkedin_accepts_subdomains():
     expected_legal_urls = [
-        'http://thing.linkedin.com/thing',
-        'http://www.linkedin.com/thing',
+        "http://thing.linkedin.com/thing",
+        "http://www.linkedin.com/thing",
     ]
     for value in expected_legal_urls:
-        assert url.is_linkedin(value) is None
+        assert url.is_linkedin(value) is True
 
 
 def test_is_linkedin_rejects_wrong_service():
-    value = 'http://google.com'
+    value = "http://google.com"
     expected_message = url.MESSAGE_NOT_LINKEDIN
     with pytest.raises(forms.ValidationError) as excinfo:
         url.is_linkedin(value)

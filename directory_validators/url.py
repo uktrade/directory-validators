@@ -4,21 +4,21 @@ from urllib import parse
 from django.core.validators import RegexValidator, ValidationError
 
 
-MESSAGE_REMOVE_URL = 'Please remove the web or email addresses'
-MESSAGE_NOT_FACEBOOK = 'Please provide a link to Facebook.'
-MESSAGE_NOT_TWITTER = 'Please provide a link to Twitter.'
-MESSAGE_NOT_LINKEDIN = 'Please provide a link to LinkedIn.'
+MESSAGE_REMOVE_URL = "Please remove the web or email addresses"
+MESSAGE_NOT_FACEBOOK = "Please provide a link to Facebook."
+MESSAGE_NOT_TWITTER = "Please provide a link to Twitter."
+MESSAGE_NOT_LINKEDIN = "Please provide a link to LinkedIn."
 
 
 class ContainsUrlValidator(RegexValidator):
     # Modified django.core.validators.URLValidator.regex.pattern, without the
     # '://'' in the pattern and start/end of the string
     link_pattern = (
-        '(?:[a-z0-9\\.\\-]*)(?:\\S+(?::\\S*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]'
-        '?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\'
-        '.]+\\]|([a-z¡-\uffff0-9](?:[a-z¡-\uffff0-9-]*[a-z¡-\uffff0-9])?(?:\\'
-        '.(?!-)[a-z¡-\uffff0-9-]+(?<!-))*\\.(?!-)(?:[a-z¡-\uffff-]{2,}|xn--[a'
-        '-z0-9]+)(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?'
+        "(?:[a-z0-9\\.\\-]*)(?:\\S+(?::\\S*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]"
+        "?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\"
+        ".]+\\]|([a-z¡-\uffff0-9](?:[a-z¡-\uffff0-9-]*[a-z¡-\uffff0-9])?(?:\\"
+        ".(?!-)[a-z¡-\uffff0-9-]+(?<!-))*\\.(?!-)(?:[a-z¡-\uffff-]{2,}|xn--[a"
+        "-z0-9]+)(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?"
     )
     regex = re.compile(link_pattern, re.IGNORECASE)
 
@@ -40,9 +40,12 @@ def is_facebook(value):
         django.forms.ValidationError
 
     """
-
+    allowed_list = ["facebook.com", "*.facebook.com"]
     parsed = parse.urlparse(value.lower())
-    if not parsed.netloc.endswith('facebook.com'):
+    netloc_subdomain = parsed.netloc.split(".")
+    if len(netloc_subdomain) >= 2 and ".".join(netloc_subdomain[-2:]) in allowed_list:
+        return True
+    else:
         raise ValidationError(MESSAGE_NOT_FACEBOOK)
 
 
@@ -57,9 +60,12 @@ def is_twitter(value):
         django.forms.ValidationError
 
     """
-
+    allowed_list = ["twitter.com", "*.twitter.com"]
     parsed = parse.urlparse(value.lower())
-    if not parsed.netloc.endswith('twitter.com'):
+    netloc_subdomain = parsed.netloc.split(".")
+    if len(netloc_subdomain) >= 2 and ".".join(netloc_subdomain[-2:]) in allowed_list:
+        return True
+    else:
         raise ValidationError(MESSAGE_NOT_TWITTER)
 
 
@@ -74,7 +80,10 @@ def is_linkedin(value):
         django.forms.ValidationError
 
     """
-
+    allowed_list = ["linkedin.com", "*.linkedin.com"]
     parsed = parse.urlparse(value.lower())
-    if not parsed.netloc.endswith('linkedin.com'):
+    netloc_subdomain = parsed.netloc.split(".")
+    if len(netloc_subdomain) >= 2 and ".".join(netloc_subdomain[-2:]) in allowed_list:
+        return True
+    else:
         raise ValidationError(MESSAGE_NOT_LINKEDIN)
