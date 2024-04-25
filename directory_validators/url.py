@@ -1,7 +1,8 @@
 import re
-from urllib import parse
 
-from django.core.validators import RegexValidator, ValidationError
+from django.core.validators import RegexValidator
+
+from directory_validators.helper import validate_social_media_url
 
 
 MESSAGE_REMOVE_URL = 'Please remove the web or email addresses'
@@ -40,10 +41,8 @@ def is_facebook(value):
         django.forms.ValidationError
 
     """
-
-    parsed = parse.urlparse(value.lower())
-    if not parsed.netloc.endswith('facebook.com'):
-        raise ValidationError(MESSAGE_NOT_FACEBOOK)
+    allowed_list = ['facebook.com', '*.facebook.com']
+    return validate_social_media_url(value, allowed_list, MESSAGE_NOT_FACEBOOK)
 
 
 def is_twitter(value):
@@ -57,10 +56,8 @@ def is_twitter(value):
         django.forms.ValidationError
 
     """
-
-    parsed = parse.urlparse(value.lower())
-    if not parsed.netloc.endswith('twitter.com'):
-        raise ValidationError(MESSAGE_NOT_TWITTER)
+    allowed_list = ['twitter.com', '*.twitter.com']
+    return validate_social_media_url(value, allowed_list, MESSAGE_NOT_TWITTER)
 
 
 def is_linkedin(value):
@@ -74,7 +71,5 @@ def is_linkedin(value):
         django.forms.ValidationError
 
     """
-
-    parsed = parse.urlparse(value.lower())
-    if not parsed.netloc.endswith('linkedin.com'):
-        raise ValidationError(MESSAGE_NOT_LINKEDIN)
+    allowed_list = ['linkedin.com', '*.linkedin.com']
+    return validate_social_media_url(value, allowed_list, MESSAGE_NOT_LINKEDIN)

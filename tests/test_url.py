@@ -295,7 +295,7 @@ def test_is_facebook_accepts_schemes():
         'http://facebook.com/thing',
     ]
     for value in expected_legal_urls:
-        assert url.is_facebook(value) is None
+        assert url.is_facebook(value) is True
 
 
 def test_is_facebook_accepts_subdomains():
@@ -304,7 +304,7 @@ def test_is_facebook_accepts_subdomains():
         'http://www.facebook.com/thing',
     ]
     for value in expected_legal_urls:
-        assert url.is_facebook(value) is None
+        assert url.is_facebook(value) is True
 
 
 def test_is_facebook_rejects_wrong_service():
@@ -321,7 +321,7 @@ def test_is_twitter_accepts_schemes():
         'http://twitter.com/thing',
     ]
     for value in expected_legal_urls:
-        assert url.is_twitter(value) is None
+        assert url.is_twitter(value) is True
 
 
 def test_is_twitter_accepts_subdomains():
@@ -330,7 +330,7 @@ def test_is_twitter_accepts_subdomains():
         'http://www.twitter.com/thing',
     ]
     for value in expected_legal_urls:
-        assert url.is_twitter(value) is None
+        assert url.is_twitter(value) is True
 
 
 def test_is_twitter_rejects_wrong_service():
@@ -347,7 +347,7 @@ def test_is_linkedin_accepts_schemes():
         'http://linkedin.com/thing',
     ]
     for value in expected_legal_urls:
-        assert url.is_linkedin(value) is None
+        assert url.is_linkedin(value) is True
 
 
 def test_is_linkedin_accepts_subdomains():
@@ -356,7 +356,7 @@ def test_is_linkedin_accepts_subdomains():
         'http://www.linkedin.com/thing',
     ]
     for value in expected_legal_urls:
-        assert url.is_linkedin(value) is None
+        assert url.is_linkedin(value) is True
 
 
 def test_is_linkedin_rejects_wrong_service():
