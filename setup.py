@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='directory_validators',
-    version='9.3.3',
+    version='9.3.4',
     url='https://github.com/uktrade/directory-validators',
     license='MIT',
     author='Department for International Trade',
